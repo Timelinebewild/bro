@@ -1,238 +1,387 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>⭐Spicy Vibes TV⭐</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+  <title>⭐ is this your girl broo ⭐</title>
+  <meta name="theme-color" content="#0b0f1a">
+  <meta name="description" content="Watch the latest trending clips on Spicy Vibes TV.">
 
-html,body{
-  background:#0b0f1a;
-  font-family:Arial,Helvetica,sans-serif;
-  color:#fff;
-  overflow-x:hidden;
-}
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f1a;
+      --panel: #111827;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #fb923c;
+    }
 
-.page{
-  max-width:480px;
-  margin:auto;
-  min-height:100vh;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.title{
-  font-size:20px;
-  font-weight:700;
-  line-height:1.4;
-  padding:16px 15px 6px;
-}
+    html {
+      min-height: 100%;
+      background: var(--bg);
+      -webkit-text-size-adjust: 100%;
+    }
 
-.desc{
-  color:#94a3b8;
-  font-size:13px;
-  line-height:1.5;
-  padding:0 15px 14px;
-}
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
 
-/* AREA IKLAN */
-.ad-slot{
-  width:100%;
-  text-align:center;
-  padding:8px 0;
-  overflow:hidden;
-}
+    .page {
+      width: 100%;
+      max-width: 520px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding-bottom: 12px;
+    }
 
-.video-wrap{
-  position:relative;
-  background:#000;
-  overflow:hidden;
-}
+    .title {
+      padding: 18px 16px 7px;
+      font-size: clamp(19px, 5vw, 23px);
+      font-weight: 700;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
 
-video{
-  width:100%;
-  max-height:76vh;
-  display:block;
-  background:#000;
-  object-fit:contain;
-}
+    .desc {
+      padding: 0 16px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
 
-.loading{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  color:#cbd5e1;
-  font-size:14px;
-}
+    /* AD SLOTS */
+    .ad-slot {
+      width: 100%;
+      min-width: 0;
+      padding: 10px 0;
+      text-align: center;
+      overflow: hidden;
+    }
 
-.info{
-  padding:14px 15px 6px;
-  color:#cbd5e1;
-  font-size:14px;
-}
+    .ad-slot > div {
+      max-width: 100%;
+      margin: 0 auto;
+      overflow-wrap: anywhere;
+    }
 
-.badge{
-  display:inline-block;
-  background:#172033;
-  color:#fff;
-  font-size:12px;
-  padding:6px 10px;
-  border-radius:999px;
-  margin:0 15px 14px;
-}
+    /* VIDEO PLAYER */
+    .video-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 180px;
+      background: #000;
+      overflow: hidden;
+      isolation: isolate;
+    }
 
-.footer{
-  text-align:center;
-  color:#64748b;
-  font-size:11px;
-  padding:18px 10px 24px;
-}
-</style>
+    #player {
+      display: block;
+      width: 100%;
+      max-height: 78vh;
+      min-height: 180px;
+      height: auto;
+      background: #000;
+      object-fit: contain;
+    }
+
+    .loading {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.68);
+      color: #e2e8f0;
+      font-size: 14px;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .loading[hidden] {
+      display: none;
+    }
+
+    .info {
+      padding: 15px 16px 10px;
+      color: #cbd5e1;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      margin: 0 16px 12px;
+      padding: 7px 12px;
+      border: 1px solid #293548;
+      border-radius: 999px;
+      background: #172033;
+      color: #f8fafc;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .footer {
+      padding: 18px 12px 24px;
+      color: #64748b;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (min-width: 700px) {
+      .page {
+        margin-top: 18px;
+        margin-bottom: 18px;
+        border: 1px solid #1e293b;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #0b0f1a;
+      }
+
+      .video-wrap {
+        border-top: 1px solid #1e293b;
+        border-bottom: 1px solid #1e293b;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <main class="page">
 
-<div class="page">
+    <header>
+      <h1 class="title">
+        This Clip Is Going Viral For A Reason 👀
+      </h1>
 
-  <div class="title">
-    This Clip Is Going Viral For A Reason 👀
-  </div>
+      <p class="desc">
+        People are talking about this everywhere. Watch closely
+        and see what happens next.
+      </p>
+    </header>
 
-  <div class="desc">
-    People are talking about this everywhere. Watch closely and see what happens next.
-  </div>
-
-  <!-- IKLAN ATAS VIDEO -->
-  <div class="ad-slot">
-    <div>
-      <script data-cfasync="false" async type="text/javascript"
-      src="//bz.loinwryneck.com/ttxu4aDhPxmR4H0/155663"></script>
+    <!-- IKLAN ATAS VIDEO -->
+    <div class="ad-slot" aria-label="Advertisement">
+      <div>
+        <script
+          data-cfasync="false"
+          async
+          type="text/javascript"
+          src="//bz.loinwryneck.com/ttxu4aDhPxmR4H0/155663">
+        </script>
+      </div>
     </div>
-  </div>
 
-  <!-- VIDEO PLAYER -->
-  <div class="video-wrap">
-    <div class="loading" id="loading">Loading video...</div>
+    <!-- VIDEO PLAYER -->
+    <section class="video-wrap" aria-label="Video player">
+      <div class="loading" id="loading" role="status" aria-live="polite">
+        Loading video...
+      </div>
 
-    <video
-      id="player"
-      controls
-      autoplay
-      muted
-      playsinline
-      preload="metadata"
-      controlsList="nodownload nofullscreen noremoteplayback"
-      disablePictureInPicture
-      disableRemotePlayback
-      poster="https://via.placeholder.com/480x720?text=Loading"
-    >
-      <source id="videoSource" src="" type="video/mp4">
-    </video>
-  </div>
+      <video
+        id="player"
+        controls
+        autoplay
+        muted
+        playsinline
+        preload="metadata"
+        controlsList="nodownload noremoteplayback"
+        disablePictureInPicture
+        poster=""
+      >
+        <source id="videoSource" src="" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+    </section>
 
-  <!-- IKLAN BAWAH VIDEO -->
-  <div class="ad-slot">
-    <div>
-      <script data-cfasync="false" async type="text/javascript"
-      src="//tu.dinomysstorm.com/tjboylowl3piX/155660"></script>
+    <!-- IKLAN BAWAH VIDEO -->
+    <div class="ad-slot" aria-label="Advertisement">
+      <div>
+        <script
+          data-cfasync="false"
+          async
+          type="text/javascript"
+          src="//tu.dinomysstorm.com/tjboylowl3piX/155660">
+        </script>
+      </div>
     </div>
-  </div>
 
-  <div class="info">
-    Tap play if the video doesn't start automatically.
-  </div>
+    <p class="info" id="videoInfo">
+      Tap play if the video doesn't start automatically.
+    </p>
 
-  <div class="badge">
-    🔥 Trending Now
-  </div>
+    <div class="badge">
+      🔥 Trending Now
+    </div>
 
-  <div class="footer">
-    © ⭐is this your girl broo⭐
-  </div>
+    <footer class="footer">
+      © <span id="year"></span> ⭐ is this your girl broo ⭐
+    </footer>
 
-</div>
+  </main>
 
-<script>
-(function(){
+  <script>
+    (() => {
+      "use strict";
 
-  const params = new URLSearchParams(window.location.search);
-  let video = params.get("v");
+      const player = document.getElementById("player");
+      const source = document.getElementById("videoSource");
+      const loading = document.getElementById("loading");
+      const videoInfo = document.getElementById("videoInfo");
 
-  if(!video){
-    video = "https://cdn.videy.co/AAU8a62J1.mp4";
-  }
+      document.getElementById("year").textContent =
+        new Date().getFullYear();
 
-  if(!video.startsWith("http")){
-    video = "https://cdn.videy.co/" + video;
-  }
+      const DEFAULT_VIDEO = "https://cdn.videy.co/AAU8a62J1.mp4";
+      const VIDEO_BASE = "https://cdn.videy.co/";
 
-  const player = document.getElementById("player");
-  const source = document.getElementById("videoSource");
-  const loading = document.getElementById("loading");
+      function resolveVideo(value) {
+        if (!value) {
+          return DEFAULT_VIDEO;
+        }
 
-  source.src = video;
-  player.load();
+        const input = value.trim();
 
-  player.play().catch(()=>{});
+        // Terima URL video lengkap dengan protokol HTTP/HTTPS.
+        if (/^https?:\/\//i.test(input)) {
+          try {
+            const url = new URL(input);
 
-  player.addEventListener("loadeddata", function(){
-    loading.style.display = "none";
-  });
+            if (!["http:", "https:"].includes(url.protocol)) {
+              return DEFAULT_VIDEO;
+            }
 
-  player.addEventListener("error", function(){
-    loading.textContent = "Unable to load video. Please try again.";
-  });
+            return url.href;
+          } catch {
+            return DEFAULT_VIDEO;
+          }
+        }
 
-  document.addEventListener("contextmenu", e => e.preventDefault());
+        // ID video harus berupa karakter yang aman untuk URL.
+        // Contoh: ?v=AAU8a62J1
+        if (!/^[a-zA-Z0-9_-]+(?:\.mp4)?$/.test(input)) {
+          return DEFAULT_VIDEO;
+        }
 
-  document.addEventListener("keydown", function(e){
-    if(
-      (e.ctrlKey && ['s','u','p'].includes(e.key.toLowerCase())) ||
-      e.key === 'F12'
-    ){
-      e.preventDefault();
-    }
-  });
+        const filename = /\.mp4$/i.test(input)
+          ? input
+          : input + ".mp4";
 
-  document.addEventListener("gesturestart", function(e){
-    e.preventDefault();
-  });
+        return VIDEO_BASE + filename;
+      }
 
-  player.addEventListener("webkitbeginfullscreen", function(){
-    this.webkitExitFullscreen && this.webkitExitFullscreen();
-  });
+      function showLoading(message) {
+        loading.textContent = message;
+        loading.hidden = false;
+      }
 
-})();
-</script>
+      function hideLoading() {
+        loading.hidden = true;
+      }
 
-<!-- HISTATS -->
-<script type="text/javascript">
-var _Hasync = _Hasync || [];
-_Hasync.push(['Histats.start', '1,5040198,4,9,110,60,00011111']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
+      function showError() {
+        showLoading("Unable to load video. Please try again.");
+        videoInfo.textContent =
+          "The video could not be loaded. Check your connection or try another video.";
+      }
 
-(function() {
-  var hs = document.createElement('script');
-  hs.type = 'text/javascript';
-  hs.async = true;
-  hs.src = '//s10.histats.com/js15_as.js';
-  (document.getElementsByTagName('head')[0] ||
-   document.getElementsByTagName('body')[0]).appendChild(hs);
-})();
-</script>
+      // Baca parameter ?v= dari URL halaman.
+      const params = new URLSearchParams(window.location.search);
+      const videoUrl = resolveVideo(params.get("v"));
 
-<noscript>
-  <a href="/" target="_blank">
-    <img src="//sstatic1.histats.com/0.gif?5014589&101" alt="" border="0">
-  </a>
-</noscript>
+      player.addEventListener("loadstart", () => {
+        showLoading("Loading video...");
+      });
+
+      player.addEventListener("waiting", () => {
+        showLoading("Buffering video...");
+      });
+
+      player.addEventListener("canplay", hideLoading);
+      player.addEventListener("playing", hideLoading);
+      player.addEventListener("error", showError);
+
+      player.addEventListener("ended", () => {
+        videoInfo.textContent = "This video has finished playing.";
+      });
+
+      // Set URL lalu mulai memuat video.
+      source.src = videoUrl;
+      player.load();
+
+      // Autoplay dicoba dalam mode mute.
+      // Browser mungkin tetap meminta pengguna menekan Play.
+      const playPromise = player.play();
+
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
+          hideLoading();
+          videoInfo.textContent =
+            "Tap play to start watching the video.";
+        });
+      }
+    })();
+  </script>
+
+  <!-- HISTATS -->
+  <script type="text/javascript">
+    var _Hasync = _Hasync || [];
+
+    _Hasync.push([
+      'Histats.start',
+      '1,5040198,4,9,110,60,00011111'
+    ]);
+
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+
+    (function () {
+      var hs = document.createElement('script');
+      hs.type = 'text/javascript';
+      hs.async = true;
+      hs.src = '//s10.histats.com/js15_as.js';
+
+      var firstScript = document.getElementsByTagName('script')[0];
+      firstScript.parentNode.insertBefore(hs, firstScript);
+    })();
+  </script>
+
+  <noscript>
+    <a href="/" target="_blank" rel="noopener noreferrer">
+      <img
+        src="//sstatic1.histats.com/0.gif?5014589&amp;101"
+        alt=""
+        width="1"
+        height="1">
+    </a>
+  </noscript>
 
 </body>
 </html>
-```
